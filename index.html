@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Saini Samose Wala | Famous Pehowa Chowk, Kaithal</title>
+  <meta name="description" content="Since 1994 — Famous Special Saini Samosa, Paneer Bread Pakora, Dhokla, Gulab Jamun & Malai Lassi at Pehowa Chowk, Kaithal. Order directly on WhatsApp!" />
+  <meta name="theme-color" content="#b91c1c" />
+  <meta property="og:title" content="Saini Samose Wala (Saini Express) — Kaithal" />
+  <meta property="og:description" content="Since 1994 • Famous Pehowa Chowk, Kaithal. Scan, browse & order on WhatsApp — fresh samosas, sweets & lassi!" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://api.qrserver.com/v1/create-qr-code/?size=512x512&data=__MENU_URL__" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥟</text></svg>" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50: '#fef2f2', 100: '#fee2e2', 500: '#ef4444', 600: '#dc2626', 700: '#b91c1c', 800: '#991b1b', 900: '#7f1d1d' },
+            cream: '#fff8ef'
+          },
+          fontFamily: {
+            display: ['Georgia', 'serif']
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-cream text-gray-900 font-sans pb-32 select-none">
+  <!-- ========== SHOP CONFIGURATION (EDIT HERE) ========== -->
+  <script>
+    /* ---- SHOP SETTINGS - EDIT THESE 3 LINES ---- */
+    const SHOP_WHATSAPP = "91XXXXXXXXXX";          // Shop WhatsApp number with country code
+    const MAPS_URL = "https://maps.google.com/?q=Pehowa+Chowk+Kaithal+Haryana"; // Location pin
+    const MENU_URL = "__MENU_URL__";               // Live menu link (auto-filled after deploy)
+    /* ---- END SHOP SETTINGS ---- */
+  </script>
+
+  <!-- ================= HEADER ================= -->
+  <header class="bg-gradient-to-br from-brand-800 via-brand-700 to-brand-600 text-white shadow-lg">
+    <div class="max-w-lg mx-auto px-4 pt-6 pb-5">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-white/15 rounded-full flex items-center justify-center text-2xl shadow-inner">🥟</div>
+          <div>
+            <h1 class="font-display font-bold text-lg leading-tight tracking-wide">Saini Samose Wala</h1>
+            <p class="text-[11px] text-brand-100 font-medium">(SAINI EXPRESS)</p>
+          </div>
+        </div>
+        <div class="text-right">
+          <p class="text-[11px] text-brand-100 font-semibold tracking-widest uppercase">Since 1994 ★</p>
+          <p class="text-[11px] text-brand-50">Famous Pehowa Chowk, Kaithal</p>
+        </div>
+      </div>
+
+      <p class="mt-3 text-center text-[13px] text-brand-50 italic bg-white/10 rounded-lg py-2 px-3">
+        "Billi ka bacha bhi zindagi me ek baar Saini ka Samosa zaroor khata hai!" 😋
+      </p>
+
+      <div class="mt-4 grid grid-cols-2 gap-2">
+        <a href="tel:+91XXXXXXXXXX" id="callBtn"
+           class="flex items-center justify-center gap-2 bg-white text-brand-700 font-bold rounded-xl py-3 shadow-md active:scale-95 transition">
+          <i class="fa-solid fa-phone-volume"></i> Call Shop
+        </a>
+        <a href="https://maps.google.com/?q=Pehowa+Chowk+Kaithal+Haryana" target="_blank" rel="noopener"
+           class="flex items-center justify-center gap-2 bg-emerald-500 text-white font-bold rounded-xl py-3 shadow-md active:scale-95 transition">
+          <i class="fa-solid fa-location-dot"></i> Location on Maps
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= WELCOME STRIP ================= -->
+  <div class="bg-amber-400 text-brand-900 text-center text-xs font-bold py-2 px-4">
+    <i class="fa-solid fa-bolt"></i> Fresh &amp; Hot har roz — 8 AM se 9 PM tak! <i class="fa-solid fa-fire"></i>
+  </div>
+
+  <!-- ================= MENU SECTION ================= -->
+  <main class="max-w-lg mx-auto px-4 pt-4">
+    <h2 class="font-display font-bold text-lg text-brand-800 flex items-center gap-2">
+      <i class="fa-solid fa-bowl-food text-brand-600"></i> Hamara Menu
+    </h2>
+    <p class="text-xs text-gray-500 mb-3">Quantity select karo aur seedha WhatsApp pe order bhejo 👇</p>
+
+    <!-- Category Tabs -->
+    <div id="tabs" class="flex gap-1.5 overflow-x-auto pb-2 -mx-1 px-1 sticky top-0 z-30 bg-cream/95 backdrop-blur pt-1">
+      <button data-cat="all" class="tab-btn active shrink-0 px-4 py-2 rounded-full text-xs font-bold bg-brand-700 text-white shadow transition">All</button>
+      <button data-cat="samosa" class="tab-btn shrink-0 px-4 py-2 rounded-full text-xs font-bold bg-white text-gray-600 border border-gray-200 shadow-sm transition">🥟 Samosa &amp; Pakora</button>
+      <button data-cat="sweets" class="tab-btn shrink-0 px-4 py-2 rounded-full text-xs font-bold bg-white text-gray-600 border border-gray-200 shadow-sm transition">🍮 Sweets &amp; Dhokla</button>
+      <button data-cat="beverage" class="tab-btn shrink-0 px-4 py-2 rounded-full text-xs font-bold bg-white text-gray-600 border border-gray-200 shadow-sm transition">🥤 Beverages</button>
+    </div>
+
+    <!-- Items -->
+    <div id="items" class="mt-3 space-y-3"></div>
+
+    <!-- ================= BULK PARTY ORDER BANNER ================= -->
+    <section class="mt-8 rounded-2xl overflow-hidden shadow-xl border-2 border-amber-400 bg-gradient-to-br from-brand-900 via-brand-800 to-brand-700 text-white">
+      <div class="p-5">
+        <div class="flex items-center gap-2 mb-1">
+          <i class="fa-solid fa-cake-candles text-amber-300 text-xl"></i>
+          <h3 class="font-display font-bold text-lg">Bulk Party Order</h3>
+        </div>
+        <p class="text-[13px] text-brand-100 leading-relaxed">
+          Shadi · Birthday · College Function — kisi bhi party ka jhakaas itihaas!<br />
+          <span class="font-semibold text-amber-300">500+ samosas/plates</span> ke liye special bulk rates.
+        </p>
+        <div class="flex flex-wrap gap-1.5 mt-3">
+          <span class="bg-white/15 rounded-full px-3 py-1 text-[11px] font-semibold">💒 Wedding</span>
+          <span class="bg-white/15 rounded-full px-3 py-1 text-[11px] font-semibold">🎂 Birthday</span>
+          <span class="bg-white/15 rounded-full px-3 py-1 text-[11px] font-semibold">🎓 College Function</span>
+        </div>
+        <button onclick="sendBulkInquiry()"
+                class="mt-4 w-full flex items-center justify-center gap-2 bg-amber-400 hover:bg-amber-300 text-brand-900 font-extrabold rounded-xl py-3.5 shadow-lg active:scale-95 transition">
+          <i class="fa-brands fa-whatsapp text-xl"></i> Inquire Bulk Rates
+        </button>
+        <p class="text-[10px] text-brand-200 text-center mt-2">WhatsApp pe enquiry bhejo — reply 5 min me!</p>
+      </div>
+    </section>
+
+    <!-- Footer info -->
+    <footer class="mt-8 mb-4 text-center text-[11px] text-gray-500 space-y-1">
+      <p><i class="fa-solid fa-location-dot text-brand-600"></i> Famous Pehowa Chowk, Kaithal, Haryana — Since 1994</p>
+      <p><i class="fa-regular fa-clock text-brand-600"></i> Roz: 8:00 AM – 9:00 PM</p>
+      <p class="text-[10px] text-gray-400">Made with ❤️ for Saini Samose Wala Kaithal</p>
+    </footer>
+  </main>
+
+  <!-- ================= STICKY BOTTOM ORDER BAR ================= -->
+  <div id="orderBar" class="fixed bottom-0 inset-x-0 z-40">
+    <div class="max-w-lg mx-auto px-3 pb-[max(12px,env(safe-area-inset-bottom))] pt-2">
+      <div id="orderBarInner" class="bg-brand-900/95 backdrop-blur rounded-2xl shadow-2xl border border-brand-700 p-2.5">
+        <div class="flex items-center justify-between gap-2">
+          <div class="text-white pl-2">
+            <p class="text-[10px] uppercase tracking-wider text-brand-200 font-semibold">Order Summary</p>
+            <p class="font-bold text-sm"><span id="barCount">0</span> items • ₹<span id="barTotal">0</span></p>
+          </div>
+          <button onclick="sendWhatsAppOrder()"
+                  class="flex-1 max-w-[230px] flex items-center justify-center gap-2 bg-green-500 hover:bg-green-400 text-white font-extrabold rounded-xl py-3.5 shadow-lg active:scale-95 transition">
+            <i class="fa-brands fa-whatsapp text-xl"></i> Send Order on WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= DATA & LOGIC ================= -->
+  <script>
+    /* ============ MENU DATA ============ */
+    const ITEMS = [
+      { id: 'samosa', cat: 'samosa', name: 'Special Saini Samosa', desc: 'Extra crispy, masaledar aloo filling — yahan ka hero!', price: 15, unit: 'pc', icon: '🥟', tag: 'Bestseller' },
+      { id: 'bread-pakora', cat: 'samosa', name: 'Paneer Bread Pakora', desc: 'Soft bread, creamy paneer, golden fry — chai ke sang best.', price: 25, unit: 'pc', icon: '🍞', tag: 'Hot' },
+      { id: 'dhokla', cat: 'sweets', name: 'Special Dhokla', desc: 'Soft & spongy, khada dhokla with tadka — na khatam honey wala!', price: 180, unit: 'kg', icon: '🧈', tag: 'Must Try' },
+      { id: 'gulab-jamun', cat: 'sweets', name: 'Gulab Jamun', desc: 'Desi ghee me pakaye, rasbhare jamun — muh me ghul jaaye.', price: 220, unit: 'kg', icon: '🍩', tag: null },
+      { id: 'lassi', cat: 'beverage', name: 'Spl. Malai Lassi', desc: 'Gaon wali malai lassi — creamy, chilled, glass-full makkhan.', price: 50, unit: 'glass', icon: '🥛', tag: 'Chilled' }
+    ];
+
+    const CATEGORIES = {
+      all: 'All',
+      samosa: 'Samosa & Pakora',
+      sweets: 'Sweets & Dhokla',
+      beverage: 'Beverages'
+    };
+
+    const BULK_MSG = "Hello Saini Samose Wala! 👋 I want to inquire about BULK / PARTY rates.\nEvent: \nDate: \nApprox plates/people: \nPreferred items: \nMy Name: ";
+
+    /* ============ STATE ============ */
+    let qty = {};
+    let activeCat = 'all';
+    ITEMS.forEach(i => qty[i.id] = 0);
+
+    /* ============ RENDER ============ */
+    function renderItems() {
+      const box = document.getElementById('items');
+      const list = ITEMS.filter(i => activeCat === 'all' || i.cat === activeCat);
+      box.innerHTML = list.map(item => `
+        <div class="flex items-center gap-3 bg-white rounded-2xl p-3.5 shadow-sm border border-gray-100">
+          <div class="w-14 h-14 shrink-0 rounded-xl bg-gradient-to-br from-amber-100 to-orange-200 flex items-center justify-center text-3xl relative">
+            ${item.icon}
+            ${item.tag ? `<span class="absolute -top-1.5 -right-1.5 bg-brand-600 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full">${item.tag}</span>` : ''}
+          </div>
+          <div class="flex-1 min-w-0">
+            <h4 class="font-bold text-sm leading-tight">${item.name}</h4>
+            <p class="text-[11px] text-gray-500 leading-snug mt-0.5">${item.desc}</p>
+            <p class="font-extrabold text-brand-700 text-sm mt-1">₹${item.price} <span class="font-medium text-[10px] text-gray-400">/ ${item.unit}</span></p>
+          </div>
+          <div class="shrink-0">
+            <div id="qty-${item.id}" class="flex items-center gap-2 bg-gray-50 rounded-full px-1.5 py-1 border border-gray-200 ${qty[item.id] === 0 ? 'hidden' : ''}">
+              <button onclick="changeQty('${item.id}', -1)" class="w-8 h-8 rounded-full bg-brand-600 text-white font-bold active:scale-90 transition">−</button>
+              <span class="w-6 text-center font-bold text-sm">${qty[item.id]}</span>
+              <button onclick="changeQty('${item.id}', 1)" class="w-8 h-8 rounded-full bg-green-500 text-white font-bold active:scale-90 transition">+</button>
+            </div>
+            <button onclick="changeQty('${item.id}', 1)" id="add-${item.id}" class="${qty[item.id] === 0 ? '' : 'hidden'} flex items-center gap-1.5 bg-brand-700 text-white font-bold text-xs rounded-full px-4 py-2.5 shadow active:scale-95 transition">
+              <i class="fa-solid fa-plus"></i> Add
+            </button>
+          </div>
+        </div>`).join('');
+    }
+
+    /* ============ ACTIONS ============ */
+    function changeQty(id, delta) {
+      qty[id] = Math.max(0, qty[id] + delta);
+      const item = ITEMS.find(i => i.id === id);
+      document.getElementById(`add-${id}`).classList.toggle('hidden', qty[id] !== 0);
+      document.getElementById(`qty-${id}`).classList.toggle('hidden', qty[id] === 0);
+      document.getElementById(`qty-${id}`).querySelector('span').textContent = qty[id];
+      updateBar(item);
+      if (qty[id] > 0) document.getElementById(`add-${id}`).closest('div').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function updateBar() {
+      const count = ITEMS.reduce((s, i) => s + qty[i.id], 0);
+      const total = ITEMS.reduce((s, i) => s + qty[i.id] * i.price, 0);
+      document.getElementById('barCount').textContent = count;
+      document.getElementById('barTotal').textContent = total;
+      document.getElementById('orderBarInner').classList.toggle('ring-2', count > 0);
+      document.getElementById('orderBarInner').classList.toggle('ring-amber-400', count > 0);
+    }
+
+    function orderText(name) {
+      const lines = ITEMS.filter(i => qty[i.id] > 0).map(i => `• ${i.name} x ${qty[i.id]} (₹${qty[i.id] * i.price})`);
+      const total = ITEMS.reduce((s, i) => s + qty[i.id] * i.price, 0);
+      return `Hello Saini Samose Wala! 🙏 I want to order:\n${lines.join('\n')}\n\nTotal: ₹${total}\nName: ${name}`;
+    }
+
+    function sendWhatsAppOrder() {
+      const count = ITEMS.reduce((s, i) => s + qty[i.id], 0);
+      if (count === 0) { alert('Pehle kuch items select karo! 😊'); return; }
+      const name = prompt('Aapka naam kya hai? (Your name)', '');
+      if (name === null) return;
+      const msg = encodeURIComponent(orderText(name.trim() || 'Guest'));
+      window.open(`https://wa.me/${SHOP_WHATSAPP}?text=${msg}`, '_blank');
+    }
+
+    function sendBulkInquiry() {
+      const msg = encodeURIComponent(BULK_MSG);
+      window.open(`https://wa.me/${SHOP_WHATSAPP}?text=${msg}`, '_blank');
+    }
+
+    /* ============ TABS ============ */
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => {
+          b.classList.remove('bg-brand-700', 'text-white', 'shadow');
+          b.classList.add('bg-white', 'text-gray-600', 'border', 'border-gray-200', 'shadow-sm');
+        });
+        btn.classList.add('bg-brand-700', 'text-white', 'shadow');
+        btn.classList.remove('bg-white', 'text-gray-600', 'border', 'border-gray-200', 'shadow-sm');
+        activeCat = btn.dataset.cat;
+        renderItems();
+      });
+    });
+
+    /* ============ INIT ============ */
+    const callBtn = document.getElementById('callBtn');
+    if (SHOP_WHATSAPP.includes('X')) { callBtn.href = `tel:+91XXXXXXXXXX`; }
+    else { callBtn.href = `tel:+${SHOP_WHATSAPP}`; }
+    renderItems();
+    updateBar();
+  </script>
+</body>
+</html>

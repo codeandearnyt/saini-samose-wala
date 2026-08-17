@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QR Standee — Saini Samose Wala Kaithal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <script>
+    tailwind.config = { theme: { extend: { colors: { brand: { 600: '#dc2626', 700: '#b91c1c', 800: '#991b1b', 900: '#7f1d1d' } } } } };
+  </script>
+  <style>
+    /* ========== PRINT SETUP: A5 LANDSCAPE STANDEE ========== */
+    @page {
+      size: A5 landscape;
+      margin: 0;
+    }
+    @media print {
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .no-print { display: none !important; }
+      .sheet {
+        width: 210mm !important;
+        height: 148mm !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+      }
+    }
+    .sheet {
+      width: 210mm;
+      height: 148mm;
+      margin: 10mm auto;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    @media screen and (max-width: 220mm) {
+      .sheet { transform: scale(0.52); transform-origin: top center; margin-bottom: -72mm; }
+    }
+  </style>
+</head>
+<body class="bg-gray-200 flex flex-col items-center py-6 print:py-0 print:bg-white">
+
+  <!-- ==================== CONFIG ==================== -->
+  <script>
+    const QR_TARGET = "__MENU_URL__";          // URL encoded in the QR code (auto-filled after deploy)
+    const QR_API = (data) => `https://api.qrserver.com/v1/create-qr-code/?size=800x800&margin=10&color=1a1a1a&bgcolor=ffffff&data=${encodeURIComponent(data)}`;
+  </script>
+
+  <div class="no-print text-center mb-6 max-w-md mx-auto px-4">
+    <p class="text-sm font-bold text-gray-700 mb-2"><i class="fa-solid fa-circle-info text-blue-600"></i> Print instructions</p>
+    <p class="text-xs text-gray-600 mb-3">Designed for <b>A5 landscape</b> acrylic standee / counter stand. Press <b>Ctrl + P</b> → Paper size <b>A5</b> → Orientation <b>Landscape</b> → Margins <b>None</b> → Enable <b>Background graphics</b>.</p>
+    <button onclick="window.print()" class="bg-brand-700 hover:bg-brand-800 text-white font-bold rounded-lg px-6 py-3 shadow-lg active:scale-95 transition">
+      <i class="fa-solid fa-print"></i> Print Poster (Ctrl + P)
+    </button>
+  </div>
+
+  <!-- ==================== A5 SHEET ==================== -->
+  <div class="sheet bg-gradient-to-br from-brand-900 via-brand-700 to-orange-600 shadow-2xl relative">
+    <!-- decorative corners -->
+    <div class="absolute top-3 left-3 w-10 h-10 border-t-4 border-l-4 border-amber-300 rounded-tl-lg"></div>
+    <div class="absolute top-3 right-3 w-10 h-10 border-t-4 border-r-4 border-amber-300 rounded-tr-lg"></div>
+    <div class="absolute bottom-3 left-3 w-10 h-10 border-b-4 border-l-4 border-amber-300 rounded-bl-lg"></div>
+    <div class="absolute bottom-3 right-3 w-10 h-10 border-b-4 border-r-4 border-amber-300 rounded-br-lg"></div>
+
+    <div class="relative h-full flex flex-col items-center justify-center px-12 py-8 text-center">
+      <!-- brand -->
+      <div class="flex items-center gap-3 mb-1">
+        <span class="text-4xl">🥟</span>
+        <div class="text-left">
+          <p class="font-black text-white text-[26px] leading-none tracking-tight font-serif">SAINI SAMOSE WALA</p>
+          <p class="text-amber-300 text-[13px] font-bold tracking-widest">SINCE 1994 ★ FAMOUS PEHOWA CHOWK, KAITHAL</p>
+        </div>
+      </div>
+
+      <!-- headline -->
+      <h1 class="text-white font-black text-[30px] leading-tight mt-3 tracking-tight font-serif drop-shadow-lg">
+        SKIP THE RUSH!<br />
+        <span class="text-amber-300">SCAN FOR MENU &amp; WhatsApp ORDERS</span>
+      </h1>
+
+      <!-- QR box -->
+      <div class="bg-white rounded-2xl p-3 shadow-2xl mt-4 ring-4 ring-amber-300/70">
+        <img id="qrImg" src="" alt="Scan to open menu" class="w-[120px] h-[120px]" />
+      </div>
+
+      <!-- instructions -->
+      <p class="text-white font-bold text-[15px] mt-3 leading-snug">
+        क्यूआर कोड स्कैन करें और व्हाट्सएप पर ऑर्डर करें 📱<br />
+        <span class="text-[12px] font-medium text-brand-100">Scan &amp; order on WhatsApp — fresh &amp; hot, right now!</span>
+      </p>
+
+      <p class="text-amber-300 text-[12px] font-bold mt-2 tracking-wide">
+        🕗 8 AM – 9 PM &nbsp;•&nbsp; 📍 Pehowa Chowk &nbsp;•&nbsp; 📞 Bulk party orders welcome 🎉
+      </p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('qrImg').src = QR_API(QR_TARGET);
+  </script>
+</body>
+</html>

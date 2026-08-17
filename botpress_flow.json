@@ -1,0 +1,213 @@
+{
+  "name": "saini-samose-wala-bot",
+  "description": "Saini Samose Wala Kaithal - WhatsApp ordering & catering bot (Botpress v12 / webhook compatible JSON)",
+  "version": "1.0.0",
+  "flows": [
+    {
+      "name": "main",
+      "description": "Entry flow - greeting, menu options, menu link, timings, location",
+      "catchAll": {
+        "onReceive": [
+          {
+            "type": "transition",
+            "condition": "temp.next === 'bulk'",
+            "next": "#bulk"
+          },
+          {
+            "type": "transition",
+            "condition": "temp.next === 'menu'",
+            "next": "#menu"
+          },
+          {
+            "type": "transition",
+            "condition": "temp.next === 'info'",
+            "next": "#info"
+          },
+          {
+            "type": "transition",
+            "condition": "event.type === 'text'",
+            "next": "#menu"
+          }
+        ],
+        "onEnter": []
+      },
+      "nodes": [
+        {
+          "id": "welcome",
+          "name": "welcome",
+          "onEnter": [
+            {
+              "type": "sendMessage",
+              "message": "Namaste! 🙏 Welcome to Saini Samose Wala Kaithal - since 1994, Famous Pehowa Chowk wala!\n\nHow can we help you today?\n\n[1] Menu & Today's Specials\n[2] Book Bulk / Party Catering Order\n[3] Shop Timings & Location",
+              "randomId": "w1"
+            },
+            {
+              "type": "setVariable",
+              "variable": "temp.next",
+              "value": "menu",
+              "defaultValue": "menu"
+            }
+          ],
+          "next": [
+            {
+              "condition": "event.nlu.intent === 'options.2' || event.preview === '2' || event.payload.text === '2' || event.payload.text === 'option 2'",
+              "node": "bulk"
+            },
+            {
+              "condition": "event.nlu.intent === 'options.3' || event.preview === '3' || event.payload.text === '3' || event.payload.text === 'option 3'",
+              "node": "info"
+            },
+            {
+              "condition": "true",
+              "node": "menu"
+            }
+          ]
+        },
+        {
+          "id": "menu",
+          "name": "menu",
+          "onEnter": [
+            {
+              "type": "sendMessage",
+              "message": "🍽️ *SAINI SAMOSE WALA - MENU*\n\n🥟 *Samosa & Pakora*\n• Special Saini Samosa - ₹15/pc\n• Paneer Bread Pakora - ₹25/pc\n\n🍮 *Sweets & Dhokla*\n• Special Dhokla - ₹180/kg\n• Gulab Jamun - ₹220/kg\n\n🥤 *Beverages*\n• Spl. Malai Lassi - ₹50/glass\n\n✅ *Today's Special:* Fresh Special Saini Samosa (subah 8 baje se hot pack ready!)\n\n👉 *Order online:* {MENU_URL}\n\nType [2] for bulk party rates, [3] for timings & location."
+            }
+          ],
+          "next": []
+        },
+        {
+          "id": "bulk",
+          "name": "bulk",
+          "onEnter": [
+            {
+              "type": "setVariable",
+              "variable": "temp.next",
+              "value": "bulk"
+            },
+            {
+              "type": "sendMessage",
+              "message": "🎉 *BULK / PARTY CATERING ORDER*\n\nGreat choice! Shadi, birthday ya college function - hum party ka poora ilaaj karte hain! 😄\n\n*Step 1 - Event:*\nKonsa event plan kar rahe ho?\n(A) Wedding / Shadi\n(B) Birthday\n(C) Function / Other"
+            }
+          ],
+          "next": [
+            {
+              "condition": "true",
+              "node": "bulk_event"
+            }
+          ]
+        },
+        {
+          "id": "bulk_event",
+          "name": "bulk_event",
+          "onEnter": [],
+          "next": [
+            {
+              "condition": "event.preview === 'A' || event.preview === 'a' || event.preview === '1' || event.payload.text.toLowerCase().includes('wed') || event.payload.text.toLowerCase().includes('shadi')",
+              "node": "bulk_date"
+            },
+            {
+              "condition": "event.preview === 'B' || event.preview === 'b' || event.payload.text.toLowerCase().includes('birth')",
+              "node": "bulk_date"
+            },
+            {
+              "condition": "event.preview === 'C' || event.preview === 'c' || true",
+              "node": "bulk_date"
+            }
+          ]
+        },
+        {
+          "id": "bulk_date",
+          "name": "bulk_date",
+          "onEnter": [
+            {
+              "type": "sendMessage",
+              "message": "📅 *Step 2 - Date & Headcount:*\nEvent ki date aur approximate plates/people batao.\n\nExample: \"18 August, ~300 plates\""
+            }
+          ],
+          "next": [
+            {
+              "condition": "true",
+              "node": "bulk_items"
+            }
+          ]
+        },
+        {
+          "id": "bulk_items",
+          "name": "bulk_items",
+          "onEnter": [
+            {
+              "type": "sendMessage",
+              "message": "🍛 *Step 3 - Items:*\nKaunsa items chahiye?\n\nA) Samosa (Special Saini / Paneer)\nB) Sweets (Gulab Jamun / Dhokla)\nC) Snacks & Lassi combo\nD) Sab kuch mixed platter\n\nEk saath sab bata sakte ho, e.g. \"200 samosa + 20 kg gulab jamun\""
+            }
+          ],
+          "next": [
+            {
+              "condition": "true",
+              "node": "bulk_confirm"
+            }
+          ]
+        },
+        {
+          "id": "bulk_confirm",
+          "name": "bulk_confirm",
+          "onEnter": [
+            {
+              "type": "sendMessage",
+              "message": "📋 *Step 4 - Confirmation:*\n\nAapki party order summary:\n\n• Event: {temp.event}\n• Date & Plates: {temp.headcount}\n• Items: {temp.items}\n\nAgar sahi hai toh [YES] bolo - ya [NO] se dobara batao.\n\n✅ *YES* ke baad hamara team aapko turant contact karega bulk rates ke saath!"
+            }
+          ],
+          "next": [
+            {
+              "condition": "event.preview === 'YES' || event.preview === 'yes' || event.preview === 'Y' || event.preview === 'y' || event.payload.text.toLowerCase().includes('yes') || event.payload.text.toLowerCase().includes('haan') || event.payload.text.toLowerCase().includes('ha ')",
+              "node": "bulk_done"
+            },
+            {
+              "condition": "event.preview === 'NO' || event.preview === 'no' || event.payload.text.toLowerCase().includes('no')",
+              "node": "bulk"
+            },
+            {
+              "condition": "true",
+              "node": "bulk_confirm"
+            }
+          ]
+        },
+        {
+          "id": "bulk_done",
+          "name": "bulk_done",
+          "onEnter": [
+            {
+              "type": "setVariable",
+              "variable": "temp.next",
+              "value": ""
+            },
+            {
+              "type": "sendMessage",
+              "message": "Shukriya! 🙏 Aapki bulk enquiry register ho gayi.\n\nHamari team *5 min* me WhatsApp pe reply karegi bulk rates ke saath. Wait karo!\n\nKuch aur chahiye? [1] Menu • [2] Bulk Order • [3] Timings"
+            },
+            {
+              "type": "webhook",
+              "url": "https://api.callmebot.com/whatsapp.php?phone=91XXXXXXXXXX&text=*** NEW BULK ENQUIRY *** Event: {temp.event} | Date: {temp.headcount} | Items: {temp.items} | Sender: {{event.channel}}",
+              "method": "GET"
+            },
+            {
+              "type": "setVariable",
+              "variable": "temp.next",
+              "value": "menu"
+            }
+          ],
+          "next": []
+        },
+        {
+          "id": "info",
+          "name": "info",
+          "onEnter": [
+            {
+              "type": "sendMessage",
+              "message": "🏪 *SHOP TIMINGS & LOCATION*\n\n📍 *Address:* Famous Pehowa Chowk, Kaithal, Haryana\n🕗 *Timings:* Roz 8:00 AM - 9:00 PM (No off day!)\n\n🗺️ Maps: https://maps.google.com/?q=Pehowa+Chowk+Kaithal+Haryana\n\nMenu dekho? [1] • Bulk order? [2]"
+            }
+          ],
+          "next": []
+        }
+      ]
+    }
+  ]
+}
