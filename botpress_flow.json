@@ -185,7 +185,7 @@
             },
             {
               "type": "webhook",
-              "url": "https://api.callmebot.com/whatsapp.php?phone=91XXXXXXXXXX&text=*** NEW BULK ENQUIRY *** Event: {temp.event} | Date: {temp.headcount} | Items: {temp.items} | Sender: {{event.channel}}",
+              "url": "https://api.callmebot.com/whatsapp.php?phone=919350549635&text=*** NEW BULK ENQUIRY *** Event: {temp.event} | Date: {temp.headcount} | Items: {temp.items} | Sender: {{event.channel}}",
               "method": "GET"
             },
             {

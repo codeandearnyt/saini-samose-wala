@@ -28,14 +28,24 @@
       }
     };
   </script>
+  <style>
+    @keyframes pop { 0% { transform: scale(1); } 50% { transform: scale(1.12); } 100% { transform: scale(1); } }
+    @keyframes toastUp { 0% { opacity: 0; transform: translateY(16px); } 10% { opacity: 1; transform: translateY(0); } 80% { opacity: 1; } 100% { opacity: 0; } }
+    @keyframes sheetUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    .pop { animation: pop .25s ease; }
+    .toast-anim { animation: toastUp 1.8s ease forwards; }
+    .sheet-anim { animation: sheetUp .3s cubic-bezier(.2,.9,.3,1); }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { scrollbar-width: none; }
+  </style>
 </head>
-<body class="bg-cream text-gray-900 font-sans pb-32 select-none">
+<body class="bg-cream text-gray-900 font-sans pb-36 select-none">
   <!-- ========== SHOP CONFIGURATION (EDIT HERE) ========== -->
   <script>
     /* ---- SHOP SETTINGS - EDIT THESE 3 LINES ---- */
-    const SHOP_WHATSAPP = "91XXXXXXXXXX";          // Shop WhatsApp number with country code
+    const SHOP_WHATSAPP = "919350549635";            // Shop WhatsApp number with country code
     const MAPS_URL = "https://maps.google.com/?q=Pehowa+Chowk+Kaithal+Haryana"; // Location pin
-    const MENU_URL = "https://saini-samose-wala.vercel.app";
+    const MENU_URL = "https://saini-samose-wala.vercel.app";                     // Live menu link
     /* ---- END SHOP SETTINGS ---- */
   </script>
 
@@ -50,9 +60,15 @@
             <p class="text-[11px] text-brand-100 font-medium">(SAINI EXPRESS)</p>
           </div>
         </div>
-        <div class="text-right">
-          <p class="text-[11px] text-brand-100 font-semibold tracking-widest uppercase">Since 1994 ★</p>
-          <p class="text-[11px] text-brand-50">Famous Pehowa Chowk, Kaithal</p>
+        <div class="flex items-center gap-2">
+          <button onclick="shareMenu()" aria-label="Share menu" title="Share menu"
+                  class="w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center shadow active:scale-90 transition">
+            <i class="fa-solid fa-share-nodes"></i>
+          </button>
+          <div class="text-right">
+            <p class="text-[11px] text-brand-100 font-semibold tracking-widest uppercase">Since 1994 ★</p>
+            <p class="text-[11px] text-brand-50">Famous Pehowa Chowk, Kaithal</p>
+          </div>
         </div>
       </div>
 
@@ -61,7 +77,7 @@
       </p>
 
       <div class="mt-4 grid grid-cols-2 gap-2">
-        <a href="tel:+91XXXXXXXXXX" id="callBtn"
+        <a href="tel:+919350549635"
            class="flex items-center justify-center gap-2 bg-white text-brand-700 font-bold rounded-xl py-3 shadow-md active:scale-95 transition">
           <i class="fa-solid fa-phone-volume"></i> Call Shop
         </a>
@@ -80,13 +96,18 @@
 
   <!-- ================= MENU SECTION ================= -->
   <main class="max-w-lg mx-auto px-4 pt-4">
-    <h2 class="font-display font-bold text-lg text-brand-800 flex items-center gap-2">
-      <i class="fa-solid fa-bowl-food text-brand-600"></i> Hamara Menu
-    </h2>
+    <div class="flex items-center justify-between mb-1">
+      <h2 class="font-display font-bold text-lg text-brand-800 flex items-center gap-2">
+        <i class="fa-solid fa-bowl-food text-brand-600"></i> Hamara Menu
+      </h2>
+      <span class="text-[10px] font-bold text-green-700 bg-green-100 rounded-full px-2 py-1">
+        <i class="fa-solid fa-leaf"></i> 100% Veg
+      </span>
+    </div>
     <p class="text-xs text-gray-500 mb-3">Quantity select karo aur seedha WhatsApp pe order bhejo 👇</p>
 
     <!-- Category Tabs -->
-    <div id="tabs" class="flex gap-1.5 overflow-x-auto pb-2 -mx-1 px-1 sticky top-0 z-30 bg-cream/95 backdrop-blur pt-1">
+    <div id="tabs" class="flex gap-1.5 overflow-x-auto no-scrollbar pb-2 -mx-1 px-1 sticky top-0 z-30 bg-cream/95 backdrop-blur pt-1">
       <button data-cat="all" class="tab-btn active shrink-0 px-4 py-2 rounded-full text-xs font-bold bg-brand-700 text-white shadow transition">All</button>
       <button data-cat="samosa" class="tab-btn shrink-0 px-4 py-2 rounded-full text-xs font-bold bg-white text-gray-600 border border-gray-200 shadow-sm transition">🥟 Samosa &amp; Pakora</button>
       <button data-cat="sweets" class="tab-btn shrink-0 px-4 py-2 rounded-full text-xs font-bold bg-white text-gray-600 border border-gray-200 shadow-sm transition">🍮 Sweets &amp; Dhokla</button>
@@ -124,6 +145,7 @@
     <footer class="mt-8 mb-4 text-center text-[11px] text-gray-500 space-y-1">
       <p><i class="fa-solid fa-location-dot text-brand-600"></i> Famous Pehowa Chowk, Kaithal, Haryana — Since 1994</p>
       <p><i class="fa-regular fa-clock text-brand-600"></i> Roz: 8:00 AM – 9:00 PM</p>
+      <p><i class="fa-brands fa-whatsapp text-green-600"></i> WhatsApp: +91 93505-49635</p>
       <p class="text-[10px] text-gray-400">Made with ❤️ for Saini Samose Wala Kaithal</p>
     </footer>
   </main>
@@ -137,12 +159,87 @@
             <p class="text-[10px] uppercase tracking-wider text-brand-200 font-semibold">Order Summary</p>
             <p class="font-bold text-sm"><span id="barCount">0</span> items • ₹<span id="barTotal">0</span></p>
           </div>
-          <button onclick="sendWhatsAppOrder()"
+          <button onclick="openOrderSheet()"
                   class="flex-1 max-w-[230px] flex items-center justify-center gap-2 bg-green-500 hover:bg-green-400 text-white font-extrabold rounded-xl py-3.5 shadow-lg active:scale-95 transition">
             <i class="fa-brands fa-whatsapp text-xl"></i> Send Order on WhatsApp
           </button>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- ================= FLOATING WHATSAPP BUBBLE ================= -->
+  <a href="https://wa.me/919350549635?text=Namaste%20Saini%20Samose%20Wala!%20%F0%9F%99%8F"
+     target="_blank" rel="noopener" aria-label="Chat on WhatsApp"
+     class="fixed bottom-24 right-4 z-40 w-13 h-13 rounded-full bg-green-500 hover:bg-green-400 text-white flex items-center justify-center shadow-xl active:scale-90 transition"
+     style="width:52px;height:52px">
+    <i class="fa-brands fa-whatsapp text-2xl"></i>
+    <span class="absolute -top-0.5 -right-0.5 w-3 h-3 bg-green-300 rounded-full border-2 border-green-500 animate-ping"></span>
+  </a>
+
+  <!-- ================= ORDER SUMMARY SHEET (MODAL) ================= -->
+  <div id="sheetOverlay" class="fixed inset-0 z-50 hidden">
+    <div id="sheetBackdrop" onclick="closeOrderSheet()" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+    <div id="sheet" class="sheet-anim absolute bottom-0 inset-x-0 mx-auto max-w-lg bg-white rounded-t-3xl shadow-2xl max-h-[88vh] flex flex-col">
+      <div class="pt-3 pb-1 flex justify-center"><div class="w-12 h-1.5 bg-gray-300 rounded-full"></div></div>
+      <div class="px-5 pt-2 pb-4 border-b border-gray-100">
+        <div class="flex items-center justify-between">
+          <h3 class="font-display font-bold text-lg text-brand-800"><i class="fa-solid fa-receipt text-brand-600 mr-2"></i>Aapka Order</h3>
+          <button onclick="closeOrderSheet()" class="w-8 h-8 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 flex items-center justify-center active:scale-90 transition">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="flex-1 overflow-y-auto px-5 py-4">
+        <div id="sheetEmpty" class="hidden text-center py-10 text-gray-400">
+          <i class="fa-solid fa-basket-shopping text-4xl mb-3"></i>
+          <p class="font-bold text-gray-500">Cart khali hai!</p>
+          <p class="text-xs mt-1">Pehle menu se kuch tasty select karo 😋</p>
+          <button onclick="closeOrderSheet()" class="mt-4 bg-brand-700 text-white text-sm font-bold rounded-full px-6 py-2.5 shadow active:scale-95 transition">Menu Dekho</button>
+        </div>
+
+        <div id="sheetItems" class="space-y-2.5"></div>
+
+        <div class="mt-5 rounded-2xl bg-gray-50 border border-gray-200 p-4 space-y-3">
+          <div>
+            <label class="text-[11px] font-bold text-gray-500 uppercase tracking-wide flex items-center gap-1">
+              <i class="fa-solid fa-user text-brand-600"></i> Aapka Naam
+            </label>
+            <input id="custName" type="text" placeholder="Naam likho (required)"
+                   class="mt-1 w-full bg-white border border-gray-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500" />
+          </div>
+          <div>
+            <label class="text-[11px] font-bold text-gray-500 uppercase tracking-wide flex items-center gap-1">
+              <i class="fa-solid fa-pen text-brand-600"></i> Koi Special Note? <span class="text-gray-400 normal-case font-normal">(optional)</span>
+            </label>
+            <textarea id="custNote" rows="2" placeholder="e.g. Extra mirchi, shaam 5 baje pickup..."
+                      class="mt-1 w-full bg-white border border-gray-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 resize-none"></textarea>
+          </div>
+          <div class="flex items-center gap-2 bg-amber-50 border border-amber-200 rounded-xl px-3 py-2 text-[11px] text-amber-800 font-medium">
+            <i class="fa-solid fa-clock"></i> Order ready in ~15 min — shop se seedha pickup.
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-100 px-5 py-4 pb-[max(16px,env(safe-area-inset-bottom))]">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-sm font-bold text-gray-600">Total</span>
+          <span class="text-xl font-extrabold text-brand-800">₹<span id="sheetTotal">0</span></span>
+        </div>
+        <button id="sheetSendBtn" onclick="sendWhatsAppOrder()"
+                class="w-full flex items-center justify-center gap-2 bg-green-500 hover:bg-green-400 text-white font-extrabold rounded-2xl py-4 shadow-lg active:scale-95 transition text-base">
+          <i class="fa-brands fa-whatsapp text-2xl"></i> Send Order on WhatsApp
+        </button>
+        <p class="text-[10px] text-gray-400 text-center mt-2">WhatsApp khulega — bas <b>Send</b> dabao!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TOAST ================= -->
+  <div id="toast" class="fixed bottom-28 inset-x-0 z-50 hidden">
+    <div class="mx-auto max-w-sm bg-gray-900/95 text-white text-sm font-bold rounded-full px-5 py-2.5 shadow-xl w-fit toast-anim flex items-center gap-2">
+      <i class="fa-solid fa-circle-check text-green-400"></i> <span id="toastText">Added!</span>
     </div>
   </div>
 
@@ -157,26 +254,27 @@
       { id: 'lassi', cat: 'beverage', name: 'Spl. Malai Lassi', desc: 'Gaon wali malai lassi — creamy, chilled, glass-full makkhan.', price: 50, unit: 'glass', icon: '🥛', tag: 'Chilled' }
     ];
 
-    const CATEGORIES = {
-      all: 'All',
-      samosa: 'Samosa & Pakora',
-      sweets: 'Sweets & Dhokla',
-      beverage: 'Beverages'
-    };
-
+    const CATEGORIES = { all: 'All', samosa: 'Samosa & Pakora', sweets: 'Sweets & Dhokla', beverage: 'Beverages' };
     const BULK_MSG = "Hello Saini Samose Wala! 👋 I want to inquire about BULK / PARTY rates.\nEvent: \nDate: \nApprox plates/people: \nPreferred items: \nMy Name: ";
 
     /* ============ STATE ============ */
     let qty = {};
     let activeCat = 'all';
+    let toastTimer = null;
     ITEMS.forEach(i => qty[i.id] = 0);
+    const savedName = localStorage.getItem('ssw_name') || '';
+    const fmt = n => n.toLocaleString('en-IN');
 
     /* ============ RENDER ============ */
     function renderItems() {
       const box = document.getElementById('items');
       const list = ITEMS.filter(i => activeCat === 'all' || i.cat === activeCat);
+      if (!list.length) {
+        box.innerHTML = `<div class="text-center py-10 text-gray-400 text-sm">Is category me abhi kuch nahi hai 😅</div>`;
+        return;
+      }
       box.innerHTML = list.map(item => `
-        <div class="flex items-center gap-3 bg-white rounded-2xl p-3.5 shadow-sm border border-gray-100">
+        <div class="flex items-center gap-3 bg-white rounded-2xl p-3.5 shadow-sm border border-gray-100" id="card-${item.id}">
           <div class="w-14 h-14 shrink-0 rounded-xl bg-gradient-to-br from-amber-100 to-orange-200 flex items-center justify-center text-3xl relative">
             ${item.icon}
             ${item.tag ? `<span class="absolute -top-1.5 -right-1.5 bg-brand-600 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full">${item.tag}</span>` : ''}
@@ -188,9 +286,9 @@
           </div>
           <div class="shrink-0">
             <div id="qty-${item.id}" class="flex items-center gap-2 bg-gray-50 rounded-full px-1.5 py-1 border border-gray-200 ${qty[item.id] === 0 ? 'hidden' : ''}">
-              <button onclick="changeQty('${item.id}', -1)" class="w-8 h-8 rounded-full bg-brand-600 text-white font-bold active:scale-90 transition">−</button>
+              <button onclick="changeQty('${item.id}', -1)" aria-label="Decrease" class="w-8 h-8 rounded-full bg-brand-600 text-white font-bold active:scale-90 transition">−</button>
               <span class="w-6 text-center font-bold text-sm">${qty[item.id]}</span>
-              <button onclick="changeQty('${item.id}', 1)" class="w-8 h-8 rounded-full bg-green-500 text-white font-bold active:scale-90 transition">+</button>
+              <button onclick="changeQty('${item.id}', 1)" aria-label="Increase" class="w-8 h-8 rounded-full bg-green-500 text-white font-bold active:scale-90 transition">+</button>
             </div>
             <button onclick="changeQty('${item.id}', 1)" id="add-${item.id}" class="${qty[item.id] === 0 ? '' : 'hidden'} flex items-center gap-1.5 bg-brand-700 text-white font-bold text-xs rounded-full px-4 py-2.5 shadow active:scale-95 transition">
               <i class="fa-solid fa-plus"></i> Add
@@ -206,37 +304,97 @@
       document.getElementById(`add-${id}`).classList.toggle('hidden', qty[id] !== 0);
       document.getElementById(`qty-${id}`).classList.toggle('hidden', qty[id] === 0);
       document.getElementById(`qty-${id}`).querySelector('span').textContent = qty[id];
-      updateBar(item);
-      if (qty[id] > 0) document.getElementById(`add-${id}`).closest('div').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (delta > 0) {
+        showToast(`${item.icon} ${item.name} added!`);
+        const card = document.getElementById(`card-${id}`);
+        card.classList.remove('pop'); void card.offsetWidth; card.classList.add('pop');
+        try { navigator.vibrate && navigator.vibrate(30); } catch (e) {}
+      }
+      updateBar();
     }
 
     function updateBar() {
       const count = ITEMS.reduce((s, i) => s + qty[i.id], 0);
       const total = ITEMS.reduce((s, i) => s + qty[i.id] * i.price, 0);
       document.getElementById('barCount').textContent = count;
-      document.getElementById('barTotal').textContent = total;
-      document.getElementById('orderBarInner').classList.toggle('ring-2', count > 0);
-      document.getElementById('orderBarInner').classList.toggle('ring-amber-400', count > 0);
+      document.getElementById('barTotal').textContent = fmt(total);
     }
 
-    function orderText(name) {
-      const lines = ITEMS.filter(i => qty[i.id] > 0).map(i => `• ${i.name} x ${qty[i.id]} (₹${qty[i.id] * i.price})`);
+    function orderText(name, note) {
+      const lines = ITEMS.filter(i => qty[i.id] > 0).map(i => `• ${i.name} x ${qty[i.id]} (₹${fmt(qty[i.id] * i.price)})`);
       const total = ITEMS.reduce((s, i) => s + qty[i.id] * i.price, 0);
-      return `Hello Saini Samose Wala! 🙏 I want to order:\n${lines.join('\n')}\n\nTotal: ₹${total}\nName: ${name}`;
+      let msg = `Hello Saini Samose Wala! 🙏 I want to order:\n${lines.join('\n')}\n\nTotal: ₹${fmt(total)}\nName: ${name}`;
+      if (note && note.trim()) msg += `\nNote: ${note.trim()}`;
+      return msg;
+    }
+
+    /* ============ ORDER SHEET ============ */
+    function openOrderSheet() {
+      const count = ITEMS.reduce((s, i) => s + qty[i.id], 0);
+      const sheetEmpty = document.getElementById('sheetEmpty');
+      const sheetItems = document.getElementById('sheetItems');
+      sheetEmpty.classList.toggle('hidden', count > 0);
+      sheetItems.classList.toggle('hidden', count === 0);
+      document.getElementById('sheetTotal').textContent = count ? fmt(ITEMS.reduce((s, i) => s + qty[i.id] * i.price, 0)) : '0';
+      sheetItems.innerHTML = ITEMS.filter(i => qty[i.id] > 0).map(i => `
+        <div class="flex items-center justify-between bg-gray-50 rounded-xl px-3.5 py-2.5 border border-gray-100">
+          <div class="min-w-0">
+            <p class="text-sm font-bold truncate">${i.icon} ${i.name}</p>
+            <p class="text-[11px] text-gray-500">₹${i.price} × ${qty[i.id]} ${i.unit}</p>
+          </div>
+          <p class="text-sm font-extrabold text-brand-800 shrink-0">₹${fmt(qty[i.id] * i.price)}</p>
+        </div>`).join('');
+      document.getElementById('custName').value = savedName;
+      document.getElementById('custNote').value = '';
+      document.getElementById('sheetOverlay').classList.remove('hidden');
+      document.getElementById('sheetBackdrop').classList.remove('sheet-anim');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeOrderSheet() {
+      document.getElementById('sheetOverlay').classList.add('hidden');
+      document.body.style.overflow = '';
     }
 
     function sendWhatsAppOrder() {
       const count = ITEMS.reduce((s, i) => s + qty[i.id], 0);
-      if (count === 0) { alert('Pehle kuch items select karo! 😊'); return; }
-      const name = prompt('Aapka naam kya hai? (Your name)', '');
-      if (name === null) return;
-      const msg = encodeURIComponent(orderText(name.trim() || 'Guest'));
+      if (count === 0) { showToast('Pehle kuch items select karo! 😊'); closeOrderSheet(); return; }
+      const name = document.getElementById('custName').value.trim();
+      if (!name) { document.getElementById('custName').focus(); showToast('Apna naam zaroor likho 😊'); return; }
+      localStorage.setItem('ssw_name', name);
+      const note = document.getElementById('custNote').value;
+      const msg = encodeURIComponent(orderText(name, note));
+      closeOrderSheet();
       window.open(`https://wa.me/${SHOP_WHATSAPP}?text=${msg}`, '_blank');
     }
 
+    /* ============ BULK ============ */
     function sendBulkInquiry() {
       const msg = encodeURIComponent(BULK_MSG);
       window.open(`https://wa.me/${SHOP_WHATSAPP}?text=${msg}`, '_blank');
+    }
+
+    /* ============ SHARE ============ */
+    function shareMenu() {
+      const text = `🥟 Saini Samose Wala — Famous Pehowa Chowk, Kaithal (Since 1994)\n\n🥟 Special Saini Samosa ₹15/pc\n🍞 Paneer Bread Pakora ₹25/pc\n🧈 Special Dhokla ₹180/kg\n🍩 Gulab Jamun ₹220/kg\n🥛 Spl. Malai Lassi ₹50/glass\n\nMenu & WhatsApp order: ${MENU_URL}`;
+      if (navigator.share) {
+        navigator.share({ title: 'Saini Samose Wala Kaithal', text, url: MENU_URL }).catch(() => {});
+      } else {
+        const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+        window.open(url, '_blank');
+      }
+    }
+
+    /* ============ TOAST ============ */
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      document.getElementById('toastText').textContent = msg;
+      t.classList.remove('hidden');
+      t.querySelector('div').classList.remove('toast-anim');
+      void t.querySelector('div').offsetWidth;
+      t.querySelector('div').classList.add('toast-anim');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.add('hidden'), 1800);
     }
 
     /* ============ TABS ============ */
@@ -254,9 +412,6 @@
     });
 
     /* ============ INIT ============ */
-    const callBtn = document.getElementById('callBtn');
-    if (SHOP_WHATSAPP.includes('X')) { callBtn.href = `tel:+91XXXXXXXXXX`; }
-    else { callBtn.href = `tel:+${SHOP_WHATSAPP}`; }
     renderItems();
     updateBar();
   </script>

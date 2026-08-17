@@ -78,7 +78,7 @@ Hamari team 5 min me WhatsApp pe reply karegi bulk rates ke saath!
 **🔔 OWNER ALERT (automated webhook):** after YES, fire a webhook to notify the shop:
 
 - **CallMeBot (free, no-code):**
-  `https://api.callmebot.com/whatsapp.php?phone=91XXXXXXXXXX&text=NEW BULK ENQUIRY | Event: {event} | Date: {headcount} | Items: {items}`
+  `https://api.callmebot.com/whatsapp.php?phone=919350549635&text=NEW BULK ENQUIRY | Event: {event} | Date: {headcount} | Items: {items}`
   *(register the owner's number at callmebot.com first; accepts one-time/limited messages)*
 
 - **Twilio / Meta WhatsApp Business Cloud API (reliable, production):**
@@ -86,7 +86,7 @@ Hamari team 5 min me WhatsApp pe reply karegi bulk rates ke saath!
   POST https://graph.facebook.com/v19.0/<PHONE_NUMBER_ID>/messages
   {
     "messaging_product": "whatsapp",
-    "to": "91XXXXXXXXXX",
+    "to": "919350549635",
     "type": "text",
     "text": { "body": "NEW BULK ENQUIRY | Event: {event} | Date: {headcount} | Items: {items}" }
   }
